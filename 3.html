@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0; /*페이지 요소 초기화*/
+        }
+        body{
+            margin-top: 20px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        #menu{
+            width: 500px;
+            padding: 10px;
+            margin: 20px 0 0 40px;
+            background-color: #eeeeee;
+            border: solid 1px #aaaaaa;
+            text-align: center;
+        }
+        #menu li{
+            display: inline;
+        }
+        a{
+            display: block;
+        }
+        .green_box{
+            display: inline-block; /*inline으로 만들어줌*/
+            width: 150px;
+            height: 75px;
+            margin: 10px;
+            border: solid 3px #73AD21;
+        }
+        #menu1 li{
+            display: inline-block;
+            padding: 10px;
+        }
+        #menu1{
+            background-color: skyblue;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="menu1">
+    <li><a href="index.html">index |</a></li>
+    <li><a href="1.html">1 |</a></li>
+    <li><a href="2.html">2 |</a></li>
+    <li><a href="3.html">3 |</a></li>
+</ul>
+<ul id="menu">
+    <li>회사소개 |</li>
+    <li>제품소개 |</li>
+    <li>공지사항 |</li>
+    <li>업무제휴 |</li>
+    <li>고객센터</li>
+</ul>
+<br>
+<p>수직 방향 메뉴:</p>
+    <a href="http://naver.com" target="_blank">네이버</a>
+    <a href="http://daum.net" target="_blank">다음</a>
+    <a href="http://google.com" target="_blank">구글</a>  <!--원래는 inline tag-->
+<br>
+<h2>인라인 + 블록 특성(display: inline-block)</h2>
+
+<div class="green_box">박스 1</div>
+<div class="green_box">박스 2</div>
+<div class="green_box">박스 3</div>
+<div class="green_box">박스 4</div>
+<div class="green_box">박스 5</div>
+<div class="green_box">박스 6</div>
+</body>
+</html>
