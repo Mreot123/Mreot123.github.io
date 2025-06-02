@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIIZE</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial;
+}
+header{
+    position: relative; /* 자식 absolute 기준 */
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-30%);
+}
+.choose span{
+    text-decoration: underline;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+.group-section {
+  background-color: aliceblue;
+  padding: 30px;
+  width: 700px;
+  border-radius: 10px;
+}
+.group-content {
+  display: flex;
+  gap: 30px;
+}
+.right-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.right-box h2 {
+  margin-top: 50px;
+  font-size: 30px;
+  border: solid 4px #ffa500;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.description {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.6;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.album-covers {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.album-covers img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-left: -20px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+.album-covers img:hover {
+  transform: translateY(-10px);
+  z-index: 2;
+  box-shadow: 0 10px #ffa500;
+}
+
+.left-box {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.group-image img {
+  width: 160px;
+  border-radius: 5px;
+  object-fit: cover;
+  background-color: black;
+  padding: 5px;
+  margin-top: 55px;
+}
+
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.songs-list .song {
+  background-color: white;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+  border: solid 2px #ffa500;
+}
+
+footer {
+  background-color: #e5bfc6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose">J-POP |</a>
+            <a href="sub2.html" class="choose"><span>K-POP</span> |</a>
+            <a href="sub3.html">POP |</a>
+            <a href="sub4.html">Hip-Hop |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="group-section">
+        <div class="group-content">
+          <div class="left-box">
+            <div class="group-image">
+              <img src="kpop4.svg" alt="Group Logo">
+            </div>
+            <div class="songs-list">
+              <div class="song">Odessay</div>
+              <div class="song">Lucky</div>
+              <div class="song">Talk Saxy</div>
+              <div class="song">★Love 119★</div>
+              <div class="song">★One Kiss★</div>
+            </div>
+          </div>
+          <div class="right-box">
+            <h2>RIIZE</h2>
+            <div class="description">
+              SM엔터테인먼트 소속의 2023년 데뷔한 7인조 남자아이돌이다. 데뷔 후 사생활 문제로 멤버가 탈퇴하여 현재는 6인조로 활동중이다.
+              데뷔 전 멤버 '원빈'의 비주얼로 큰 화제가 되었으며, 기존 NCT에서 활동하던 멤버들의 재데뷔로도 관심을 받았다. 악기 이름을 곡명에 넣어 음악적인
+              요소를 극대화하는 방식을 주로 사용하며 이외에도 청춘의 모습을 앨범에 담아가고 있다.
+            </div>
+            <div class="album-covers">
+              <img src="kpop4-1.webp" alt="Album 1">
+              <img src="kpop4-2.webp" alt="Album 2">
+              <img src="kpop4-3.webp" alt="Album 3">
+              <img src="kpop4-4.webp" alt="Album 4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="home-wrapper">
+        <button class="home" onclick="location.href='sub2.html'"><span>Back</span></button>
+        <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+    </div>
+  </main>
+
+  <footer>
+    © 202334064 박민하 | My Favorite Music
+  </footer>
+</body>
+</html>

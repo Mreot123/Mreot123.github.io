@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>00s Hip-Hop</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial;
+}
+
+header{
+    height: 100px; /* 적당한 높이 설정 */
+    background-color: #e5bfc6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img {
+    margin-top: 29px;
+    padding-left: 10px;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-10%);
+}
+
+.choose span{
+  text-decoration: underline;
+}
+
+.time {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0 20px;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rapper-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.box {
+    background-color: aliceblue;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    position: relative;
+    border: solid 2px lightgray;
+}
+
+.rapper-img {
+    width: 250px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.rapper-img img{
+    width: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+
+}
+.rapper-name-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.rapper-name {
+    background-color: rgb(209, 223, 209);
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.rapper-name:hover {
+    transform: translateY(-5px); /* 위로 이동 */
+    box-shadow: 3px 0px 10px rgba(128, 128, 128, 0.3); /* 회색 그림자 */
+    transition: all 0.2s ease;
+}
+
+.desc-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1px;
+    width: 200px;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.desc-box::before {
+    content: "";
+    position: absolute;
+    top: -6px; /* 설명창 위에 위치 */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent gray transparent;
+
+}
+
+.rapper-name:hover + .desc-box {
+    display: block;
+}
+
+.songs {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px 0;
+    position: relative;
+    z-index: 0;
+}
+
+footer {
+  background-color: #e5bfc6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose">J-POP |</a>
+            <a href="sub2.html" class="choose">K-POP |</a>
+            <a href="sub3.html">POP |</a>
+            <a href="sub4.html" class="choose"><span>Hip-Hop</span> |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+  </header>
+  <main>
+    <section>
+        <div class="time">2000s</div>
+        <div class="title">: Bling and Blog</div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop2.jpg"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">50 Cent</div>
+                    <div class="desc-box">
+                        2003년 발매한 정규 1집 앨범이 미국 역사상 가장 많이 팔린 앨범 4위를 기록하였다.
+                        <br>
+                        한 살인청부업자에 의해 총을 9발이나 맞고도 살아난 사건으로도 유명하다.
+                    </div>
+                </div>
+                <div class="songs">★Just A Little Bit★</div>
+                <div class="songs">Candy Shop</div>
+                <div class="songs">21 Questions</div>
+            </div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop2-2.jpg"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">Eminem</div>
+                    <div class="desc-box">
+                        대중음악 역사에서 best-selling을 기록한 아티스트 중 한명으로 힙합 역사상 가장 큰 성공을 거뒀다고 여겨진다.
+                        <br>
+                        흑인들의 전유물로 여겨지던 힙합 필드에서 유일하게 최고 자리에 오르게 된 백인으로 힙합 장르를 넘어 대중적으로 많은 사랑을 받았다.
+                        <br>
+                        빌보드가 2000년대의 아이콘으로 선정하기도 하였다.
+                    </div>
+                </div>
+                <div class="songs">★Without Me★</div>
+                <div class="songs">Loose Yourself</div>
+                <div class="songs">The Real Slimm Shady</div>
+                <div class="songs">Stan</div>
+            </div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop2-3.jpg"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">Kanye West</div>
+                    <div class="desc-box">
+                        힙합 장르에 있어서 음악적인 발전에 가장 큰 기여를 한 것으로 평가되며 비트 사운드나 장르적 크로스 오버면에서 선구자로 인정받는다.
+                        <br>
+                        현재는 갖가지의 논란으로 인해 안좋은 평이 많으나 그가 힙합 역사에 끼친 영향력은 이를 덮어버릴만큼 대단하다.
+                    </div>
+                </div>
+                <div class="songs">Bound 2</div>
+                <div class="songs">★POWER★</div>
+                <div class="songs">Flashing Lights</div>
+                <div class="songs">CARNIVAL</div>
+            </div>
+    </div>
+    </section>
+
+    <div class="home-wrapper">
+        <button class="home" onclick="location.href='sub4.html'"><span>Back</span></button>
+        <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+    </div>
+  </main>
+
+  <footer>
+    © 202334064 박민하 | My Favorite Music
+  </footer>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ke$ha</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial;
+}
+header{
+    position: relative; /* 자식 absolute 기준 */
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-30%);
+}
+.choose span{
+    text-decoration: underline;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+.group-section {
+  background-color: aliceblue;
+  padding: 30px;
+  width: 850px;
+  border-radius: 10px;
+}
+.group-content {
+  display: flex;
+  gap: 30px;
+}
+
+.right-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 85px;
+}
+
+.left-box h2 {
+  margin: 30px;
+  font-size: 30px;
+  border-bottom: solid 3px black;
+}
+
+.description {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.6;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.album-covers {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+.album-covers img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.album-covers img:hover {
+  transform: translateY(-10px);
+  z-index: 2;
+  box-shadow: 0 10px lightgray;
+}
+
+.left-box {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.group-image img {
+  width: 300px;
+  object-fit: cover;
+}
+
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.songs-list .song {
+  background-color: white;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+  border: solid 1px gray;
+}
+
+footer {
+  background-color: #e5bfc6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+.play-btn, .stop-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  float: right;
+}
+
+.play-btn{
+    color: rgb(252, 172, 24);
+}
+
+.play-btn.playing {
+  color: gray;    /* ▶ 재생 중: 회색 */
+}
+
+.stop-btn{
+    color: rgb(237, 126, 126);
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<script>
+function playAudio(audioId, buttonElement) {
+  // 모든 오디오 멈추고 버튼 초기화
+  document.querySelectorAll('audio').forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+  document.querySelectorAll('.play-btn').forEach(btn => {
+    btn.classList.remove('playing');
+  });
+
+  // 선택한 오디오 재생
+  const audio = document.getElementById(audioId);
+  audio.play();
+
+  // 재생 중 버튼 회색 처리
+  buttonElement.classList.add('playing');
+
+  // 끝나면 버튼 색상 복귀
+  audio.onended = () => {
+    buttonElement.classList.remove('playing');
+  };
+}
+
+function stopAudio(audioId, playBtnElement) {
+  const audio = document.getElementById(audioId);
+  audio.pause();
+  audio.currentTime = 0;
+
+  // ▶ 버튼 색상 복귀
+  const allPlayBtns = document.querySelectorAll('.play-btn');
+  allPlayBtns.forEach(btn => btn.classList.remove('playing'));
+}
+</script>
+<body>
+  <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose">J-POP |</a>
+            <a href="sub2.html" class="choose">K-POP |</a>
+            <a href="sub3.html" class="choose"><span>POP</span> |</a>
+            <a href="sub4.html">Hip-Hop |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="group-section">
+        <div class="group-content">
+          <div class="left-box">
+            <h2>Ke$ha</h2>
+            <div class="group-image">
+              <img src="pop4.jpg"Group Logo">
+            </div>
+            <div class="description">
+              1987년 출생의 미국 태생의 싱어송라이터로 2010년 데뷔할 당시 싱글로 발매한 TiK ToK이라는 곡이 빌보드 핫 100에서 9주간 1위를 하면서 팝계에서 매우 큰 주목을 받았다.
+              이 후 1집과 2집을 성공적으로 발매했으나 이후의 성적은 눈에 띄는 결과를 낳지는 못했다. 그러나 TiK ToK하나만으로도 충분한 영향력과 인기를 보여주었다.
+            </div>
+          </div>
+          <div class="right-box">
+                <div class="songs-list">
+                <div class="song">★Tik Tok★
+                  <button class="stop-btn" onclick="stopAudio('audio1', this)">●</button>
+                  <button class="play-btn" onclick="playAudio('audio1', this)">●</button>
+                  <audio id="audio1" src="Ke$ha - TiK ToK (Audio).mp3"></audio>
+                </div>
+                <div class="song">C'Mon</div>
+                <div class="song">We R who We R</div>
+                <div class="song">Kiss N Tell</div>
+            </div>
+            <div class="album-covers">
+              <img src="pop4-1.webp" alt="Album 1">
+              <img src="pop4-2.webp" alt="Album 2">
+            </div>
+            <div class="album-covers">
+                <img src="pop4-3.webp" alt="Album 3">
+                <img src="pop4-4.jpg" alt="Album 4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="home-wrapper">
+        <button class="home" onclick="location.href='sub3.html'"><span>Back</span></button>
+        <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+    </div>
+  </main>
+
+  <footer>
+    © 202334064 박민하 | My Favorite Music
+  </footer>
+</body>
+</html>

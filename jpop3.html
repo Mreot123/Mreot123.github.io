@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="">
+    <title>Document</title>
+<style>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial;
+}
+
+header{
+    position: relative; /* 자식 absolute 기준 */
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-30%);
+}
+
+footer {
+      background-color: #e5bfc6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+}
+
+.choose span{
+    text-decoration: underline;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.song-section{
+    background-color: aliceblue;
+    padding: 30px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: solid 5px rgb(209, 223, 209);
+    border-radius: 5px;
+}
+
+section h2{
+    margin-bottom: 10px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.poster-box img {
+    width: 200px;
+    border-radius: 5px;
+}
+
+.info-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.songs {
+    display: flex;
+    align-items: center;
+    background-color: rgb(209, 223, 209);
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 18px;
+    justify-content: space-between;
+}
+
+.text{
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+    color: black;
+    font-size: 17px;
+}
+
+.btn-wrapper {
+      margin-left: auto;
+}
+
+.play-btn, .stop-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: white;
+}
+
+.play-btn {
+    color: orange;
+}
+
+.play-btn.playing {
+  color: gray;
+}
+
+.stop-btn {
+    color: red;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<script>
+function playAudio(audioId, buttonElement) {
+  // 모든 오디오 멈추고 버튼 초기화
+  document.querySelectorAll('audio').forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+  document.querySelectorAll('.play-btn').forEach(btn => {
+    btn.classList.remove('playing');
+  });
+
+  // 선택한 오디오 재생
+  const audio = document.getElementById(audioId);
+  audio.play();
+
+  // 재생 중 버튼 회색 처리
+  buttonElement.classList.add('playing');
+
+  // 끝나면 버튼 색상 복귀
+  audio.onended = () => {
+    buttonElement.classList.remove('playing');
+  };
+}
+
+function stopAudio(audioId, playBtnElement) {
+  const audio = document.getElementById(audioId);
+  audio.pause();
+  audio.currentTime = 0;
+
+  // ▶ 버튼 색상 복귀
+  const allPlayBtns = document.querySelectorAll('.play-btn');
+  allPlayBtns.forEach(btn => btn.classList.remove('playing'));
+}
+</script>
+<body>
+    <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose"><span>J-POP</span> |</a>
+            <a href="sub2.html">K-POP |</a>
+            <a href="sub3.html">POP |</a>
+            <a href="sub4.html">Hip-Hop |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="song-section">
+                <h2>체인소 맨(チェンソーマン)</h2>
+                <div class="content-wrapper">
+                    <div class="poster-box">
+                        <img src="jpop3.webp" alt="poster">
+                    </div>
+                    <div class="info-box">
+                        <div class="songs">KICK BACK - Yonez Kenshi
+                            <div class="btn-wrapper">
+                                <button class="stop-btn" onclick="stopAudio('audio1', this)">⏹</button>
+                                <button class="play-btn" onclick="playAudio('audio1', this)">▶</button>
+                            </div>
+                            <audio id="audio1" src="「米津玄師 - KICK BACK」チェンソーマン OP Full.mp3"></audio>
+                        </div>
+                        <div class="text">
+                            가슴에 있는 줄을 잡아 당기면 ‘체인소의 악마’로 변신!
+                            악마들로 가득찬 세상을 구하기 위해서가 아니라,
+                            ‘그녀’의 사랑을 얻기 위해 악마를 죽이는 다크 히어로 ‘체인소 맨’ 덴지! 과연 그는 악마를 잡아 목표한 바를 이룰 수 있을까?!
+                            <br><br>
+                            - 해체주의적 성향이 강한 작품으로 잔인한 묘사와 기괴한 연출이 자주 등장하는 특징을 가지고 있다. 이러한 설정 속에서 주인공의 성장을 보여주는 소년만화적인 면모가 인기의 요인으로 나타난다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="home-wrapper">
+            <button class="home" onclick="location.href='sub1.html'"><span>Back</span></button>
+            <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+        </div>
+    </main>
+
+    <footer>
+        © 202334064 박민하 | My Favorite Music
+    </footer>
+</body>
+</html>

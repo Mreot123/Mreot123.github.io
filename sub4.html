@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hip-Hop - Sub Page4</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header{
+  position: relative; /* 자식 absolute 기준 */
+  background-color: #e5bfc6;
+  height: 100px; /* 적당한 높이 설정 */
+  color: white;
+}
+
+#logo img{
+  position: absolute;
+  top: 40%;
+  left: 20px;
+  width: 200px;
+  transform: translateY(-30%);
+}
+
+nav{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+nav a{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  }
+
+.choose span{
+  text-decoration: underline;
+}
+
+main {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.content-box {
+  background-color: aliceblue;
+  padding: 40px;
+  width: 800px;
+  border-radius: 10px;
+  border: solid 1px black;
+}
+
+.content-box h2 {
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card {
+  width: 200px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.card div{
+  font-size: 18px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  box-shadow: 4px 6px 10px rgba(128, 128, 128, 0.621); /* 회색 그림자 */
+  transition: all 0.2s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card div {
+  font-size: 20px;
+}
+
+footer {
+  background-color: #e5bfc6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.home{
+  background-color: rgb(209, 223, 209);
+  font-weight: bold;
+  border: none;
+  padding: 8px 23px;
+  border-radius: 20px;
+  font-size: 18px;
+  color: white;
+}
+
+.home:hover {
+  cursor: pointer;
+  background-color: gray;
+  transform: translateY(5px); /* 위로 이동 */
+    box-shadow: 0 4px 7px rgba(128, 128, 128, 0.3); /* 회색 그림자 */
+    transition: all 0.2s ease;
+}
+
+.home:hover span{
+  text-decoration: underline;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+    margin: 10px auto;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <header>
+    <div id="logo"><img src="logo.jpg"></div>
+    <nav>
+      <a href="sub1.html">J-POP |</a>
+      <a href="sub2.html">K-POP |</a>
+      <a href="sub3.html">POP |</a>
+      <a href="sub4.html" class="choose"><span>Hip-Hop</span> |</a>
+      <a href="sub5.html">ETC |</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content-box">
+      <h2>Bring the beat from 90s to 10s</h2>
+      <div class="card-container">
+        <a class="card" href="hiphop1.html">
+          <img src="hiphop90.jpg" alt="1990s">
+          <div>1990s</div>
+        </a>
+        <a class="card" href="hiphop2.html">
+          <img src="hiphop00.jpg" alt="2000s">
+          <div>2000s</div>
+        </a>
+        <a class="card" href="hiphop3.html">
+          <img src="hiphop10.jpg" alt="2010s">
+          <div>2010s</div>
+        </a>
+      </div>
+    </div>
+  
+  </main>
+  <div class="home-wrapper">
+      <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+  </div>
+
+  <footer>
+    © 202334064 박민하 | My Favorite Music
+  </footer>
+
+</body>
+</html>

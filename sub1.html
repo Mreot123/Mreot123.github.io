@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="">
+    <title>Document</title>
+<style>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial;
+}
+
+header{
+    position: relative; /* 자식 absolute 기준 */
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img{
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-30%);
+}
+
+footer {
+      background-color: #e5bfc6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+}
+
+.choose span{
+    text-decoration: underline;
+}
+
+section{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.song-section{
+    background-color: aliceblue;
+    padding: 30px;
+    width: 500px;
+    border: solid 2px gray;
+    border-radius: 10px;
+}
+
+section h2{
+    margin-bottom: 20px;
+}
+
+.song-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.songs {
+    display: inline-block;
+    background-color: rgb(240, 210, 215);
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 15px;
+    text-align: left;
+    width: 370px;
+    transition: all 0.2s ease;
+}
+
+.songs:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    transform: translateY(-5px); /* 위로 이동 */
+    box-shadow: 6px 6px 10px rgba(128, 128, 128, 0.3); /* 회색 그림자 */
+    transition: all 0.2s ease;
+}
+
+.songs2{
+    display: inline-block;
+    background-color: rgb(240, 210, 215);
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 15px;
+    text-align: left;
+    width: 370px
+}
+
+.play-btn, .stop-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  float: right;
+}
+
+.play-btn{
+    color: rgb(252, 172, 24);
+}
+
+.play-btn.playing {
+  color: gray;    /* ▶ 재생 중: 회색 */
+}
+
+.stop-btn{
+    color: rgb(237, 126, 126);
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+    transform: translateY(5px); /* 위로 이동 */
+    box-shadow: 0 4px 7px rgba(128, 128, 128, 0.3); /* 회색 그림자 */
+    transition: all 0.2s ease;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+    margin: 10px auto;
+  }
+}
+
+</style>
+</head>
+<script>
+function playAudio(audioId, buttonElement) {
+  // 모든 오디오 멈추고 버튼 초기화
+  document.querySelectorAll('audio').forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+  document.querySelectorAll('.play-btn').forEach(btn => {
+    btn.classList.remove('playing');
+  });
+
+  // 선택한 오디오 재생
+  const audio = document.getElementById(audioId);
+  audio.play();
+
+  // 재생 중 버튼 회색 처리
+  buttonElement.classList.add('playing');
+
+  // 끝나면 버튼 색상 복귀
+  audio.onended = () => {
+    buttonElement.classList.remove('playing');
+  };
+}
+
+function stopAudio(audioId, playBtnElement) {
+  const audio = document.getElementById(audioId);
+  audio.pause();
+  audio.currentTime = 0;
+
+  // ▶ 버튼 색상 복귀
+  const allPlayBtns = document.querySelectorAll('.play-btn');
+  allPlayBtns.forEach(btn => btn.classList.remove('playing'));
+}
+</script>
+
+<body>
+    <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose"><span>J-POP</span> |</a>
+            <a href="sub2.html">K-POP |</a>
+            <a href="sub3.html">POP |</a>
+            <a href="sub4.html">Hip-Hop |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="song-section">
+                <h2>In to the Anime🖼️</h2>
+                <div class="song-list">
+                    <a href="jpop1.html" class="songs">青のすみか - Kitani Tatsuya</a>
+                    <a href="jpop2.html" class="songs">Nobody - OneRepublic</a>
+                    <a href="jpop3.html" class="songs">KICK BACK - Yonez Kenshi</a>
+                    <a href="jpop4.html" class="songs">サムライハート (Some Like It Hot!!) - SPYAIR</a>
+                    <a href="jpop5.html" class="songs">インフェルノ(Inferno) - Mrs. GREEN APPLE</a>
+                </div>
+            </div>
+
+            <div class="song-section">
+                <h2>🎵</h2>
+                <div class="song-list">
+                    <div class="songs2">ねえ(Hey) - TATSUYA
+                        <button class="stop-btn" onclick="stopAudio('audio1', this)">⏹</button>
+                        <button class="play-btn" onclick="playAudio('audio1', this)">▶</button>
+                        <audio id="audio1" src="ねぇ.mp3"></audio>
+                    </div>
+                    <div class="songs2">Phone Call - THE SIXTH LIE
+                        <button class="stop-btn" onclick="stopAudio('audio2', this)">⏹</button>
+                        <button class="play-btn" onclick="playAudio('audio2', this)">▶</button>
+                        <audio id="audio2" src="THE SIXTH LIEPhone Call(Audio).mp3"></audio>
+                    </div>
+                    <div class="songs2">逆夢 - King Gnu
+                        <button class="stop-btn" onclick="stopAudio('audio3', this)">⏹</button>
+                        <button class="play-btn" onclick="playAudio('audio3', this)">▶</button>
+                        <audio id="audio3" src="이뤄지지 않을 꿈이라도⭐️ King Gnu(킹누) - 역몽(逆夢, Sakayume) (주술회전 OST) [가사발음한글 자막해석].mp3"></audio>
+                    </div>
+                    <div class="songs2">ライラクス - Lilac - Mrs. GREEN APPLE
+                        <button class="stop-btn" onclick="stopAudio('audio4', this)">⏹</button>
+                        <button class="play-btn" onclick="playAudio('audio4', this)">▶</button>
+                        <audio id="audio4" src="Lilac.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="home-wrapper">
+            <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+        </div>
+    </main>
+
+    <footer>
+        © 202334064 박민하 | My Favorite Music
+    </footer>
+</body>
+</html>

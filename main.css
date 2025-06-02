@@ -1,0 +1,159 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial;
+}
+
+header{
+    position: relative; /* 자식 absolute 기준 */
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img{
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-30%);
+}
+
+.clear{
+    clear: both;
+}
+
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.genre {
+  background-color: #c6d6a0;
+  border: solid 10px #f4d1cc;
+  border-radius: 50%;     /* 원형 */
+  width: 150px;
+  height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.genre:hover{
+    border: solid 10px rgb(255, 229, 233);
+    color: white;
+    text-decoration: underline;
+}
+
+.genre.selected {
+    border-color: #666;
+}
+
+.genre-wrapper {
+  background-color: rgb(209, 223, 209);
+  padding: 30px;
+  margin: 30px auto;
+  max-width: 1100px;
+  min-height: 350px;
+  border-radius: 15px;
+  text-align: center;
+}
+.genre-wrapper h2 {
+  margin: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+  font-size: 35px;
+}
+
+footer {
+      background-color: #e5bfc6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}

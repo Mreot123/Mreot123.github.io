@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>90s Hip-Hop</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial;
+}
+
+header{
+    background-color: #e5bfc6;
+    height: 100px; /* 적당한 높이 설정 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+}
+
+nav{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logo img {
+    margin-top: 29px;
+    padding-left: 10px;
+    top: 40%;
+    left: 20px;
+    width: 200px;
+    transform: translateY(-10%);
+}
+
+.choose span{
+  text-decoration: underline;
+}
+
+.time {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0 20px;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rapper-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.box {
+    background-color: aliceblue;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    position: relative;
+    border: solid 2px lightgray;
+}
+
+.rapper-img {
+    width: 250px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.rapper-img img{
+    width: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+
+}
+.rapper-name-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.rapper-name {
+    background-color: rgb(209, 223, 209);
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rapper-name:hover {
+    transform: translateY(-5px); /* 위로 이동 */
+    box-shadow: 3px 0px 10px rgba(128, 128, 128, 0.3); /* 회색 그림자 */
+    transition: all 0.2s ease;
+}
+
+.desc-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1px;
+    width: 200px;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.desc-box::before {
+    content: "";
+    position: absolute;
+    top: -6px; /* 설명창 위에 위치 */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent gray transparent;
+
+}
+
+.rapper-name:hover + .desc-box {
+    display: block;
+}
+
+.songs {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px 0;
+    position: relative;
+    z-index: 0;
+}
+
+footer {
+  background-color: #e5bfc6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home{
+    background-color: rgb(209, 223, 209);
+    font-weight: bold;
+    border: none;
+    padding: 8px 23px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+}
+
+.home:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.home:hover span{
+    text-decoration: underline;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  section, .group-section, .song-section, .song-section2, .content-box {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .group-content, .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-box, .right-box, .song-list, .songs, .songs2, .songs-list .song {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  nav {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  #logo img {
+    position: static;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+    transform: none;
+  }
+
+  .album-covers {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+  }
+
+  .album-covers img {
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .home-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home {
+    width: 80%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header>
+        <div id="logo"><img src="logo.jpg"></div>
+        <nav>
+            <a href="sub1.html" class="choose">J-POP |</a>
+            <a href="sub2.html" class="choose">K-POP |</a>
+            <a href="sub3.html">POP |</a>
+            <a href="sub4.html" class="choose"><span>Hip-Hop</span> |</a>
+            <a href="sub5.html">ETC |</a>
+        </nav>
+  </header>
+  <main>
+    <section>
+        <div class="time">1990s</div>
+        <div class="title">: The Golden Age</div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop1.jpg"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">2 Pac</div>
+                    <div class="desc-box">
+                        라이벌이었던 Biggie와 함께 역대 가장 영향력있는 래퍼 중 한 명으로 꼽힌다.
+                        <br>
+                        철학적인 주제와 갱스터 랩과 같은 장르까지 넘나들며 다양한 스팩트럼으로 힙합계에서 위상을 떨쳤다.</div>
+                </div>
+                <div class="songs">★California Love★</div>
+                <div class="songs">All Eyez On Me</div>
+                <div class="songs">Do For Love</div>
+            </div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop1-2.webp"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">Snoop Dogg</div>
+                    <div class="desc-box">
+                        1992년에서 1994년 사이 최고의 전성기로서 음악계에서 최고로 뽑히던 시기를 지냈다. 
+                        <br>
+                        1993년에 발매한 데뷔 앨범은 힙합 역사상 최고의 명반으로도 여겨진다.
+                    </div>
+                </div>
+                <div class="songs">★Drop It Like It's Hot (feat. Pharrell Williams★</div>
+                <div class="songs">Still D.R.E (feat. Snoop Dogg)</div>
+                <div class="songs">Beautiful (feat. Pharrell Williams & Uncle Charlie Wilson)</div>
+                <div class="songs">2 of Americaz Most Wanted</div>
+            </div>
+
+        <div class="rapper-container">
+            <div class="box">
+                <div class="rapper-img"><img src="hiphop1-3.webp"></div>
+                <div class="rapper-name-wrapper">
+                    <div class="rapper-name">The Notorious B.I.G</div>
+                    <div class="desc-box">
+                        동부를 대표하는 Biggie와 서부를 대표하는 2 Pac으로 상징되었다.
+                        <br>
+                        본 이름보다 Biggie라는 이름으로 더욱 잘 알려져 있으며, 뉴욕의 왕이라는 타이틀을 얻기도 했다.
+                    </div>
+                </div>
+                <div class="songs">★Mo Money Mo Problems (feat. Mase & Puff Daddy)★</div>
+                <div class="songs">Big Poppa</div>
+                <div class="songs">Juicy</div>
+            </div>
+    </div>
+    </section>
+
+    <div class="home-wrapper">
+        <button class="home" onclick="location.href='sub4.html'"><span>Back</span></button>
+        <button class="home" onclick="location.href='main.html'"><span>Home</span>🏠</button>
+    </div>
+  </main>
+
+  <footer>
+    © 202334064 박민하 | My Favorite Music
+  </footer>
+</body>
+</html>
